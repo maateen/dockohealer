@@ -42,7 +42,7 @@ func main() {
 	for {
 		select {
 		case event := <-events:
-			healer.CheckPoint(ctx, cli, event)
+			go healer.CheckPoint(ctx, cli, event)
 		case err := <-errs:
 			if err == io.EOF {
 				log.Error(err)

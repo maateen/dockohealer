@@ -1,5 +1,7 @@
 # dockohealer
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/maateen/dockohealer)](https://goreportcard.com/report/github.com/maateen/dockohealer)
+
 This daemon monitors and restarts unhealthy docker containers instantly. This project is inspired from [docker-autoheal](https://github.com/willfarrell/docker-autoheal) and written on GoLang with love.
 
 ## Installation
@@ -28,5 +30,6 @@ You should use [systemd](https://www.linode.com/docs/quick-answers/linux/start-s
 
 ## Road map
 
+- [ ] Restart already unhealthy containers
 - [ ] Add flags to the daemon
 - [ ] Launch a dockerized version
