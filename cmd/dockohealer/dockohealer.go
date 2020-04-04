@@ -2,13 +2,14 @@ package main
 
 import (
 	"context"
+	"io"
+	"os"
+
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/filters"
 	"github.com/docker/docker/client"
 	"github.com/maateen/dockohealer/internal/healer"
 	log "github.com/sirupsen/logrus"
-	"io"
-	"os"
 )
 
 func init() {
@@ -41,7 +42,7 @@ func main() {
 	for {
 		select {
 		case event := <-events:
-			healer.CheckPoint(cli, ctx, event)
+			healer.CheckPoint(ctx, cli, event)
 		case err := <-errs:
 			if err == io.EOF {
 				log.Error(err)

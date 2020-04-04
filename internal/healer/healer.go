@@ -2,28 +2,30 @@ package healer
 
 import (
 	"context"
+	"strings"
+	"time"
+
 	"github.com/docker/docker/api/types/events"
 	"github.com/docker/docker/client"
 	log "github.com/sirupsen/logrus"
-	"strings"
-	"time"
 )
 
-func CheckPoint(cli *client.Client, ctx context.Context, event events.Message) {
+// CheckPoint checks the health status of a container and takes action.
+func CheckPoint(ctx context.Context, cli *client.Client, event events.Message) {
 	healthStatus := strings.Split(event.Status, " ")[1]
 	log.WithFields(log.Fields{
-		"containerID":  event.ID,
+		"containerID": event.ID,
 	}).Infof("Container is %s.", healthStatus)
 
 	if event.Type == "container" && healthStatus == "unhealthy" {
 		log.WithFields(log.Fields{
 			"containerID": event.ID,
 		}).Info("Restarting container.")
-		restartContainer(cli, ctx, event.ID)
+		restartContainer(ctx, cli, event.ID)
 	}
 }
 
-func restartContainer(cli *client.Client, ctx context.Context, containerID string) {
+func restartContainer(ctx context.Context, cli *client.Client, containerID string) {
 	var timeout *time.Duration
 	err := cli.ContainerRestart(ctx, containerID, timeout)
 	if err == nil {
