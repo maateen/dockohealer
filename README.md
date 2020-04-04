@@ -8,12 +8,14 @@ This daemon monitors and restarts unhealthy docker containers instantly. This pr
 
 ```shell script
 $ wget https://github.com/maateen/dockohealer/releases/download/v0.1/dockohealer-linux-amd64-v0.1
-$ mv bin/dockohealer-linux-amd64-v0.1 /usr/local/bin/dockohealer
+$ mv dockohealer-linux-amd64-v0.1 /usr/local/bin/dockohealer
 $ chmod +x /usr/local/bin/dockohealer
 
 ```
 
 ## Usage
+
+### Standalone
 
 ```shell script
 $ dockohealer
@@ -25,6 +27,16 @@ $ dockohealer
 {"containerID":"5e37d4624fbaa128d1fbdd21e3a4cf0aa78eeff48e8902ef60eca95496d3155c","level":"info","msg":"Container is unhealthy.","time":"2020-04-04T15:26:15+06:00"}
 {"containerID":"5e37d4624fbaa128d1fbdd21e3a4cf0aa78eeff48e8902ef60eca95496d3155c","level":"info","msg":"Restarting container.","time":"2020-04-04T15:26:15+06:00"}
 {"containerID":"5e37d4624fbaa128d1fbdd21e3a4cf0aa78eeff48e8902ef60eca95496d3155c","level":"info","msg":"Successfully restarted container.","time":"2020-04-04T15:26:15+06:00"}
+```
+
+### Docker Container
+
+```shell script
+$ docker run -d \
+      --name dockohealer \
+      --restart=always \
+      -v /var/run/docker.sock:/var/run/docker.sock \
+      maateen/dockohealer
 ```
 
 ## Process Manager
