@@ -7,8 +7,8 @@ This daemon monitors and restarts unhealthy docker containers instantly. This pr
 ## Installation
 
 ```shell script
-$ wget https://github.com/maateen/dockohealer/releases/download/v0.1/dockohealer-linux-amd64-v0.1
-$ mv dockohealer-linux-amd64-v0.1 /usr/local/bin/dockohealer
+$ wget https://github.com/maateen/dockohealer/releases/download/v0.2/dockohealer-linux-amd64-v0.2
+$ mv dockohealer-linux-amd64-v0.2 /usr/local/bin/dockohealer
 $ chmod +x /usr/local/bin/dockohealer
 
 ```
