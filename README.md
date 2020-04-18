@@ -47,4 +47,4 @@ You should use [systemd](https://www.linode.com/docs/quick-answers/linux/start-s
 
 - [x] Restart already unhealthy containers
 - [ ] Add flags to the daemon
-- [ ] Launch a dockerized version
+- [x] Launch a dockerized version
