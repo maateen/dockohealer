@@ -6,7 +6,7 @@ BINARY_NAME=dockohealer
 GOBIN=bin
 GOOS=darwin linux
 GOARCH=amd64 386
-VERSION=v0.1
+VERSION=v0.2
 
 all: prepare build
 prepare:
