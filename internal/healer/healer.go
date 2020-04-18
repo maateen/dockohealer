@@ -5,6 +5,10 @@ import (
 	"strings"
 	"time"
 
+	"github.com/docker/docker/api/types/filters"
+
+	"github.com/docker/docker/api/types"
+
 	"github.com/docker/docker/api/types/events"
 	"github.com/docker/docker/client"
 	log "github.com/sirupsen/logrus"
@@ -25,6 +29,34 @@ func CheckPoint(ctx context.Context, cli *client.Client, event events.Message) {
 	}
 }
 
+// FindGhosts finds the containers which are already unhealthy.
+func FindGhosts(ctx context.Context, cli *client.Client) {
+	args := filters.NewArgs(
+		filters.Arg("health", "unhealthy"),
+	)
+	containerListOptions := types.ContainerListOptions{
+		Filters: args,
+	}
+
+	containerList, err := cli.ContainerList(ctx, containerListOptions)
+
+	if err == nil {
+		for _, container := range containerList {
+			log.WithFields(log.Fields{
+				"containerID": container.ID,
+			}).Infof("Container is unhealthy.")
+
+			log.WithFields(log.Fields{
+				"containerID": container.ID,
+			}).Info("Restarting container.")
+
+			restartContainer(ctx, cli, container.ID)
+		}
+	} else {
+		log.Error(err)
+	}
+}
+
 func restartContainer(ctx context.Context, cli *client.Client, containerID string) {
 	var timeout *time.Duration
 	err := cli.ContainerRestart(ctx, containerID, timeout)
@@ -35,6 +67,6 @@ func restartContainer(ctx context.Context, cli *client.Client, containerID strin
 	} else {
 		log.WithFields(log.Fields{
 			"containerID": containerID,
-		}).Fatalf("%s", err)
+		}).Error(err)
 	}
 }

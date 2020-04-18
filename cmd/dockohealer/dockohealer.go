@@ -35,9 +35,16 @@ func main() {
 	}
 
 	ctx, cancel := context.WithCancel(context.Background())
-	events, errs := cli.Events(ctx, eventOptions)
-	log.Info("Listening from Docker.")
 	defer cancel()
+
+	events, errs := cli.Events(ctx, eventOptions)
+	if err == nil {
+		log.Info("Listening from Docker.")
+	} else {
+		log.Fatal(err)
+	}
+
+	go healer.FindGhosts(ctx, cli)
 
 	for {
 		select {
