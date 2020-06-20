@@ -1,12 +1,10 @@
 # dockohealer
 
 [![Build Status](https://travis-ci.com/maateen/dockohealer.svg?branch=master)](https://travis-ci.com/maateen/dockohealer)
+[![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/maateen/dockohealer)](https://hub.docker.com/r/maateen/dockohealer)
 [![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/maateen/dockohealer)](https://github.com/maateen/dockohealer)
 [![Go Report Card](https://goreportcard.com/badge/github.com/maateen/dockohealer)](https://goreportcard.com/report/github.com/maateen/dockohealer)
-[![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/maateen/dockohealer)](https://hub.docker.com/r/maateen/dockohealer)
-[![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/maateen/dockohealer)](https://hub.docker.com/r/maateen/dockohealer)
 ![Maintenance](https://img.shields.io/maintenance/yes/2020)
-[![GitHub All Releases](https://img.shields.io/github/downloads/maateen/dockohealer/total)](https://github.com/maateen/dockohealer/releases)
 [![GitHub](https://img.shields.io/github/license/maateen/dockohealer?color=green)](https://github.com/maateen/dockohealer/blob/master/LICENSE)
 
 This daemon monitors and restarts unhealthy docker containers instantly. This project is inspired from [docker-autoheal](https://github.com/willfarrell/docker-autoheal) and written on GoLang with love.
