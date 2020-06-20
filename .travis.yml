@@ -43,6 +43,6 @@ deploy:
   name: dockohealer $TRAVIS_TAG
   file: dockohealer-$TRAVIS_OS_NAME-$TRAVIS_CPU_ARCH-$TRAVIS_TAG
   overwrite: true
-  cleanup: false
+  skip_cleanup: true
   on:
     tags: true
