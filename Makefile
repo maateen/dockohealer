@@ -17,5 +17,4 @@ build:
 run:
 		$(GORUN) -ldflags "-X main.buildTime=$(buildTime) -X main.gitSHA=$(gitSHA) -X main.versionString=$(versionString)" $(WORKDIR)/dockohealer.go
 clean:
-		cd cmd/dockohealer
-		$(GOCLEAN)
+		$(GOCLEAN) $(WORKDIR)/dockohealer.go
