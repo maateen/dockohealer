@@ -39,8 +39,7 @@ before_deploy:
 
 deploy:
   provider: releases
-  user: maateen
-  password: $GITHUB_TOKEN
+  token: $GITHUB_TOKEN
   file: dockohealer-$TRAVIS_OS_NAME-$TRAVIS_CPU_ARCH-$TRAVIS_TAG
   overwrite: true
   on:
