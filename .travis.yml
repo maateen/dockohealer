@@ -40,7 +40,9 @@ before_deploy:
 deploy:
   provider: releases
   token: $GITHUB_TOKEN
+  name: dockohealer $TRAVIS_TAG
   file: dockohealer-$TRAVIS_OS_NAME-$TRAVIS_CPU_ARCH-$TRAVIS_TAG
   overwrite: true
+  cleanup: false
   on:
     tags: true
