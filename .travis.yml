@@ -15,9 +15,11 @@ go:
 addons:
   apt:
     update: true
-
-install:
-  - sudo apt-get -y install upx
+    packages:
+      - upx
+  homebrew:
+    packages:
+      - upx
 
 before_script:
   - go mod tidy
