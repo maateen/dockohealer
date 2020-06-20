@@ -18,6 +18,7 @@ addons:
     packages:
       - upx
   homebrew:
+    update: true
     packages:
       - upx
 
@@ -28,20 +29,21 @@ script:
   - buildTime=$(date +'%Y-%m-%d_%T')
   - gitSHA=$(git rev-parse HEAD)
   - cd cmd/dockohealer
-  - go build -ldflags "-X main.buildTime=$buildTime -X main.gitSHA=$gitSHA -X main.versionStrings=$TRAVIS_TAG"
+  - go build -ldflags "-X main.buildTime=$buildTime -X main.gitSHA=$gitSHA -X main.versionString=$TRAVIS_TAG"
   - ./dockohealer -version
 
 after_success:
-  - if [ "$TRAVIS_TAG" != "" ]; then upx --brute dockohealer; fi
+  - if [ "$TRAVIS_TAG" != "" ]; then upx --best --brute dockohealer; fi
 
 before_deploy:
   - if [ "$TRAVIS_TAG" != "" ]; then mv dockohealer dockohealer-$TRAVIS_OS_NAME-$TRAVIS_CPU_ARCH-$TRAVIS_TAG; fi
 
 deploy:
   provider: releases
-  user: maateen
-  password: $GITHUB_TOKEN
+  token: $GITHUB_TOKEN
+  name: dockohealer $TRAVIS_TAG
   file: dockohealer-$TRAVIS_OS_NAME-$TRAVIS_CPU_ARCH-$TRAVIS_TAG
   overwrite: true
+  skip_cleanup: true
   on:
     tags: true
