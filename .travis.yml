@@ -32,10 +32,7 @@ script:
   - ./dockohealer -version
 
 after_success:
-  - if [ "$TRAVIS_TAG" != "" ]; then upx --brute dockohealer; fi
-
-before_deploy:
-  - if [ "$TRAVIS_TAG" != "" ]; then mv dockohealer dockohealer-$TRAVIS_OS_NAME-$TRAVIS_CPU_ARCH-$TRAVIS_TAG; fi
+  - if [ "$TRAVIS_TAG" != "" ]; then upx --best --brute -o dockohealer-$TRAVIS_OS_NAME-$TRAVIS_CPU_ARCH-$TRAVIS_TAG dockohealer; fi
 
 deploy:
   provider: releases
