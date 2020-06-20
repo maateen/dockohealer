@@ -29,7 +29,7 @@ script:
   - buildTime=$(date +'%Y-%m-%d_%T')
   - gitSHA=$(git rev-parse HEAD)
   - cd cmd/dockohealer
-  - go build -ldflags "-X main.buildTime=$buildTime -X main.gitSHA=$gitSHA -X main.versionStrings=$TRAVIS_TAG"
+  - go build -ldflags "-X main.buildTime=$buildTime -X main.gitSHA=$gitSHA -X main.versionString=$TRAVIS_TAG"
   - ./dockohealer -version
 
 after_success:
