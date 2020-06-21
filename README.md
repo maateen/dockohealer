@@ -19,7 +19,7 @@ $ cd dockohealer/cmd/dockohealer
 $ buildTime=$(date +'%Y-%m-%d_%T')
 $ gitSHA=$(git rev-parse HEAD)
 $ versionString=$(git tag --sort=committerdate | tail -1)
-$ go build -ldflags "-X main.buildTime=$buildTime -X main.gitSHA=$gitSHA -X main.versionStrings=$versionString"
+$ go build -ldflags "-X main.buildTime=$buildTime -X main.gitSHA=$gitSHA -X main.versionString=$versionString"
 ```
 
 #### Use binary
