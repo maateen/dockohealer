@@ -29,7 +29,7 @@ $ export VERSION=v0.3
 $ export OS=linux
 $ export ARCH=amd64
 $ wget https://github.com/maateen/dockohealer/releases/download/$VERSION/dockohealer-$OS-$ARCH-$VERSION
-$ mv dockohealer-$OS-$ARCH-$version /usr/local/bin/dockohealer
+$ mv dockohealer-$OS-$ARCH-$VERSION /usr/local/bin/dockohealer
 $ chmod +x /usr/local/bin/dockohealer
 
 ```
